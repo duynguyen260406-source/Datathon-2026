@@ -1,0 +1,38 @@
+column,type,category,description,units,range,present_in_train,present_in_test,model_role,use_for_modeling
+event_id,identifier,identifier,"Anonymized fire event identifier (stable random remap, no temporal meaning)",,,True,True,identifier,False
+time_to_hit_hours,target,target,"Time from t0+5h until fire comes within 5km of evac zone (hours). For censored events (never hit within 72h), this is the last observed time within the window (≤ 72). Used for training survival models.",hours,"[0, 72]",True,False,target,False
+event,target,target,"Event indicator: 1 if fire hit within 72h, 0 if censored (never hit)",,,True,False,target,False
+num_perimeters_0_5h,feature,temporal_coverage,Number of perimeters within first 5 hours,,,True,True,feature,True
+dt_first_last_0_5h,feature,temporal_coverage,Time span between first and last perimeter (hours),,,True,True,feature,True
+low_temporal_resolution_0_5h,feature,temporal_coverage,"Flag: 1 if dt < 0.5h or only 1 perimeter, else 0",,,True,True,feature,True
+area_first_ha,feature,growth,Initial fire area at t0 (hectares),,,True,True,feature,True
+area_growth_abs_0_5h,feature,growth,Feature from growth category,,,True,True,feature,True
+area_growth_rel_0_5h,feature,growth,Feature from growth category,,,True,True,feature,True
+area_growth_rate_ha_per_h,feature,growth,Area growth rate (hectares per hour),,,True,True,feature,True
+log1p_area_first,feature,growth,Feature from growth category,,,True,True,feature,True
+log1p_growth,feature,growth,Feature from growth category,,,True,True,feature,True
+log_area_ratio_0_5h,feature,growth,Feature from growth category,,,True,True,feature,True
+relative_growth_0_5h,feature,growth,Feature from growth category,,,True,True,feature,True
+radial_growth_m,feature,growth,Feature from growth category,,,True,True,feature,True
+radial_growth_rate_m_per_h,feature,growth,Feature from growth category,,,True,True,feature,True
+centroid_displacement_m,feature,centroid_kinematics,Feature from centroid_kinematics category,,,True,True,feature,True
+centroid_speed_m_per_h,feature,centroid_kinematics,Feature from centroid_kinematics category,,,True,True,feature,True
+spread_bearing_deg,feature,centroid_kinematics,Feature from centroid_kinematics category,,,True,True,feature,True
+spread_bearing_sin,feature,centroid_kinematics,Feature from centroid_kinematics category,,,True,True,feature,True
+spread_bearing_cos,feature,centroid_kinematics,Feature from centroid_kinematics category,,,True,True,feature,True
+dist_min_ci_0_5h,feature,distance,Minimum distance to nearest evac zone centroid (meters),,,True,True,feature,True
+dist_std_ci_0_5h,feature,distance,Feature from distance category,,,True,True,feature,True
+dist_change_ci_0_5h,feature,distance,Feature from distance category,,,True,True,feature,True
+dist_slope_ci_0_5h,feature,distance,Feature from distance category,,,True,True,feature,True
+closing_speed_m_per_h,feature,distance,"Speed at which fire is closing distance to evac zone (m/hour, positive = closing)",,,True,True,feature,True
+closing_speed_abs_m_per_h,feature,distance,Feature from distance category,,,True,True,feature,True
+projected_advance_m,feature,distance,Feature from distance category,,,True,True,feature,True
+dist_accel_m_per_h2,feature,distance,Feature from distance category,,,True,True,feature,True
+dist_fit_r2_0_5h,feature,distance,Feature from distance category,,,True,True,feature,True
+alignment_cos,feature,directionality,Feature from directionality category,,,True,True,feature,True
+alignment_abs,feature,directionality,"Absolute alignment between fire motion and evac direction (0-1, higher = more aligned)",,,True,True,feature,True
+cross_track_component,feature,directionality,Feature from directionality category,,,True,True,feature,True
+along_track_speed,feature,directionality,Feature from directionality category,,,True,True,feature,True
+event_start_hour,feature,temporal_metadata,Hour of day when fire started (0-23),,,True,True,feature,True
+event_start_dayofweek,feature,temporal_metadata,"Day of week (0=Monday, 6=Sunday)",,,True,True,feature,True
+event_start_month,feature,temporal_metadata,Month when fire started (1-12),,,True,True,feature,True
